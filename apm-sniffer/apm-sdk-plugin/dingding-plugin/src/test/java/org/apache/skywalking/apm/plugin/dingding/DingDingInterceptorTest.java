@@ -1,6 +1,5 @@
 package org.apache.skywalking.apm.plugin.dingding;
 
-import com.sun.webkit.Invoker;
 import org.apache.skywalking.apm.agent.core.conf.Config;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.EnhancedInstance;
 import org.apache.skywalking.apm.agent.test.tools.AgentServiceRule;
@@ -36,8 +35,6 @@ public class DingDingInterceptorTest {
 
     @Mock
     private EnhancedInstance enhancedInstance;
-    @Mock
-    private Invoker invoker;
 
     private Object[] arguments;
     private Class[] argumentTypes;
