@@ -60,6 +60,7 @@
         <module>elasticsearch-5.x-plugin</module>
         <module>activemq-5.x-plugin</module>
         <module>undertow-plugins</module>
+        <module>dingding-plugin</module>
     </modules>
     <packaging>pom</packaging>
 
