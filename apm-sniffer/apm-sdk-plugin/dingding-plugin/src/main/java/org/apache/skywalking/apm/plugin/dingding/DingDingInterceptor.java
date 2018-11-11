@@ -46,7 +46,7 @@ public class DingDingInterceptor implements InstanceMethodsAroundInterceptor {
 
     private static final String DINGDING_OP_PREFIX = "Dingding/";
 
-    private static final String ERROR_MESSAGE = "应用: {0} , ClassName: {1} , Message: {2} , Stack: {3}";
+    private static final String ERROR_MESSAGE = "ApplicationName: {0} , ClassName: {1} , Message: {2} , Stack: {3}";
 
     @Override
     public void beforeMethod(EnhancedInstance objInst, Method method, Object[] allArguments,
