@@ -1,4 +1,4 @@
-package org.apache.skywalking.apm.plugin.dingding.model;
+package org.apache.skywalking.apm.plugin.dingding.define.model;
 
 public class AtModel {
 

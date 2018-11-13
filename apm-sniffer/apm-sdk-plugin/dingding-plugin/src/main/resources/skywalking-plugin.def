@@ -14,4 +14,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-dingding=org.apache.skywalking.apm.plugin.dingding.DingDingInstrumentation
+dingding=org.apache.skywalking.apm.plugin.dingding.define.DingDingServletExceptionInstrumentation

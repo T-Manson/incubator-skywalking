@@ -1,4 +1,4 @@
-package org.apache.skywalking.apm.plugin.dingding;
+package org.apache.skywalking.apm.plugin.dingding.define;
 
 import net.bytebuddy.description.method.MethodDescription;
 import net.bytebuddy.matcher.ElementMatcher;
@@ -13,10 +13,10 @@ import static net.bytebuddy.matcher.ElementMatchers.named;
 /**
  * @author T-Manson
  */
-public class DingDingInstrumentation extends ClassInstanceMethodsEnhancePluginDefine {
+public class DingDingServletExceptionInstrumentation extends ClassInstanceMethodsEnhancePluginDefine {
 
-    private static final String ENHANCE_CLASS = "org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.InstanceMethodsAroundInterceptor";
-    private static final String INTERCEPT_CLASS = "org.apache.skywalking.apm.plugin.dingding.DingDingInterceptor";
+    private static final String ENHANCE_CLASS = "org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver";
+    private static final String INTERCEPT_CLASS = "org.apache.skywalking.apm.plugin.dingding.DingDingServletExceptionInterceptor";
 
     @Override
     protected ClassMatch enhanceClass() {
@@ -34,7 +34,7 @@ public class DingDingInstrumentation extends ClassInstanceMethodsEnhancePluginDe
             new InstanceMethodsInterceptPoint() {
                 @Override
                 public ElementMatcher<MethodDescription> getMethodsMatcher() {
-                    return named("handleMethodException");
+                    return named("doResolveHandlerMethodException");
                 }
 
                 @Override

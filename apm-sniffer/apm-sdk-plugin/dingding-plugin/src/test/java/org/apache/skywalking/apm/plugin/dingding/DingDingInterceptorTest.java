@@ -31,7 +31,7 @@ public class DingDingInterceptorTest {
     @Rule
     public AgentServiceRule serviceRule = new AgentServiceRule();
 
-    private DingDingInterceptor interceptor;
+    private DingDingServletExceptionInterceptor interceptor;
 
     @Mock
     private EnhancedInstance enhancedInstance;
@@ -41,7 +41,7 @@ public class DingDingInterceptorTest {
 
     @Before
     public void setUp() throws Exception {
-        interceptor = new DingDingInterceptor();
+        interceptor = new DingDingServletExceptionInterceptor();
 
         Config.Plugin.Dingding.WEB_HOOK = "https://oapi.dingtalk.com/robot/send?access_token=04872c69f58a898149dea16f89bcaedc0c843d9d0483e509e451798ec5e272f0";
 

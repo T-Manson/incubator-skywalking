@@ -32,9 +32,9 @@ import org.apache.skywalking.apm.agent.core.context.util.ThrowableTransformer;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.EnhancedInstance;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.InstanceMethodsAroundInterceptor;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.MethodInterceptResult;
-import org.apache.skywalking.apm.plugin.dingding.model.AtModel;
-import org.apache.skywalking.apm.plugin.dingding.model.DingDingTextRequest;
-import org.apache.skywalking.apm.plugin.dingding.model.TextModel;
+import org.apache.skywalking.apm.plugin.dingding.define.model.AtModel;
+import org.apache.skywalking.apm.plugin.dingding.define.model.DingDingTextRequest;
+import org.apache.skywalking.apm.plugin.dingding.define.model.TextModel;
 
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
@@ -42,7 +42,7 @@ import java.text.MessageFormat;
 /**
  * @author T-Manson
  */
-public class DingDingInterceptor implements InstanceMethodsAroundInterceptor {
+public class DingDingServletExceptionInterceptor implements InstanceMethodsAroundInterceptor {
 
     private static final String DINGDING_OP_PREFIX = "Dingding/";
 
@@ -59,6 +59,8 @@ public class DingDingInterceptor implements InstanceMethodsAroundInterceptor {
         AbstractSpan span = ContextManager.createExitSpan(DINGDING_OP_PREFIX + getParamInfo(allArguments, argumentsTypes),
                 new ContextCarrier(), remotePeer);
         span.setComponent("dingding-moniter");
+
+        pushMsgToDingding(Config.Plugin.Dingding.WEB_HOOK, (Exception) allArguments[3]);
     }
 
     @Override
@@ -74,10 +76,6 @@ public class DingDingInterceptor implements InstanceMethodsAroundInterceptor {
         AbstractSpan activeSpan = ContextManager.activeSpan();
         activeSpan.errorOccurred();
         activeSpan.log(t);
-        String webHook = Config.Plugin.Dingding.WEB_HOOK;
-        if (webHook != null && !webHook.isEmpty()) {
-            pushMsgToDingding(webHook, t);
-        }
     }
 
     private String getParamInfo(Object[] allArguments, Class<?>[] argumentsTypes) {
